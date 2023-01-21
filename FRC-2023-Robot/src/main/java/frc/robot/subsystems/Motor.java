@@ -7,41 +7,55 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ExampleSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+
+public class Motor extends SubsystemBase {
+  /** Creates a new Motor. */
+  TalonSRX m_motor;
+  public Motor() {
+      m_motor = new TalonSRX(10);
+    }
+  public void set(double speed) {
+      m_motor.set(TalonSRXControlMode.PercentOutput, speed);
+  }
+  public void beStill() {
+      m_motor.set(TalonSRXControlMode.PercentOutput, 0);
+  }
+  }
 
   /**
    * Example command factory method.
    *
    * @return a command
    */
-  public CommandBase exampleMethodCommand() {
+  /** public CommandBase exampleMethodCommand() {
     // Inline construction of command goes here.
     // Subsystem::RunOnce implicitly requires `this` subsystem.
     return runOnce(
         () -> {
           /* one-time action goes here */
-        });
-  }
+        //});
+  //} 
 
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-  public boolean exampleCondition() {
+  //public boolean exampleCondition() {
     // Query some boolean state, such as a digital sensor.
-    return false;
-  }
+    //return false;
+  //}
 
-  @Override
-  public void periodic() {
+  //@Override
+ // public void periodic() {
     // This method will be called once per scheduler run
-  }
+  //}
 
-  @Override
+  /* @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
-}
+} */
